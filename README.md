@@ -106,3 +106,4 @@ To reference any other assets, like the music in Bloc Jams, use the path `assets
 
 The `templates` directory should hold any HTML files used as templates in Angular states configured by UI Router. All other HTML files belong in the `pages` directory.
 # bloc-jams-angular
+# bloc-jams-angular

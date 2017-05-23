@@ -97,43 +97,44 @@
       song.playing = false;
     };
 
+
+      /**
+      * @function SongPlayer.previous
+      * @desc Go to Previous song
+      * @param
+      */
+      SongPlayer.previous = function() {
+        var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+        currentSongIndex--;
+
+        if (currentSongIndex < 0) {
+          currentBuzzObject.stop();
+          stopSong(SongPlayer.currentSong);
+        } else {
+          var song = currentAlbum.songs[currentSongIndex];
+          setSong(song);
+          playSong(song);
+        }
+      };
+
+      /**
+      * @function SongPlayer.next
+      * @desc Go to next song
+      * @param
+      */
+      SongPlayer.next = function(){
+        stopSong(SongPlayer.currentSong);
+        var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+        currentSongIndex++;
+
+        if (currentSongIndex !== currentAlbum.songs.length) {
+          var song = currentAlbum.songs[currentSongIndex];
+          setSong(song);
+          playSong(song);
+        }
+      };
+
     return SongPlayer;
-  };
-
-  /**
-  * @function SongPlayer.previous
-  * @desc Go to Previous song
-  * @param
-  */
-  SongPlayer.previous = function() {
-    var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-    currentSongIndex--;
-
-    if (currentSongIndex < 0) {
-      currentBuzzObject.stop();
-      stopSong(SongPlayer.currentSong);
-    } else {
-      var song = currentAlbum.songs[currentSongIndex];
-      setSong(song);
-      playSong(song);
-    }
-  };
-
-  /**
-  * @function SongPlayer.next
-  * @desc Go to next song
-  * @param
-  */
-  SongPlayer.next = function(){
-    var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-    currentSongIndex++;
-
-    if (currentSongIndex === currentAlbum.songs.length) {
-      stopSong(SongPlayer.currentSong);
-    } else {
-      var song = currentAlbum.songs[currentSongIndex];
-      setSong(song);
-    }
   };
 
   angular

@@ -32,6 +32,12 @@ function seekBar($document) {
         return {width: percentString()};
       };
 
+      scope.thumbStyle = function () {
+        return {
+          left: percentString()
+        };
+      };
+
       scope.onClickSeekBar = function(event) {
         var percent = calculatePercent (seekbar, event);
         scope.value = percent * scope.max;
@@ -40,7 +46,7 @@ function seekBar($document) {
       scope.trackThumb = function () {
         $document.bind('mousemove.thumb', function(event){
           var percent = calculatePercent (seekBar, event);
-          scope.$apply(function(){
+          scope(function(){
             scope.value = percent * scope.max;
           });
         });

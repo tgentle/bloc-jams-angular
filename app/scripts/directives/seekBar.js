@@ -1,7 +1,7 @@
-(function ()
+(function () {
 function seekBar($document) {
 
-  var claculatePercent = function(seekBar, event) {
+  var calculatePercent = function(seekBar, event) {
     var offsetX = event.pageX - seekBar.offset().left;
     var seekBarWidth = seekBar.width();
     var offsetXPercent = offsetX / seekBarWidth;
@@ -21,6 +21,14 @@ function seekBar($document) {
 
       var seekBar = $(element);
 
+      attributes.$observe('value', function(newValue){
+        scope.value = newValue;
+      });
+
+      attributes.$observe('max', function(newValue){
+        scope.max = newValue;
+      });
+
       var percentString = function() {
         var value = scope.value;
         var max = scope.max;
@@ -39,16 +47,16 @@ function seekBar($document) {
       };
 
       scope.onClickSeekBar = function(event) {
-        var percent = calculatePercent (seekbar, event);
+        var percent = calculatePercent (seekBar, event);
         scope.value = percent * scope.max;
       };
 
       scope.trackThumb = function () {
         $document.bind('mousemove.thumb', function(event){
           var percent = calculatePercent (seekBar, event);
-          scope(function(){
+          //scope(function(){
             scope.value = percent * scope.max;
-          });
+          //});
         });
 
         $document.bind('mouseup.thumb', function() {
@@ -63,5 +71,5 @@ function seekBar($document) {
 
 angular
 .module('blocJams')
-.directives('seekBar', ['$document', seekBar]);
+.directive('seekBar', ['$document', seekBar]);
 })();

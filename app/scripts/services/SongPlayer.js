@@ -87,6 +87,8 @@
     */
     SongPlayer.volume = 75;
 
+    SongPlayer.muted = false;
+
     /**
     * @function setCurrentTime
     * @desc Set current time (in seconds) of currently playing song
@@ -171,8 +173,23 @@
       SongPlayer.volume = volume;
     };
 
+    SongPlayer.setMute = function() {
+      if (SongPlayer.Volume === 0) {
+        alert ("You have muted the volume!");
+        SongPlayer.muted = false;
+
+        SongPlayer.setVolume(SongPlayer.preVolume);
+      } else {
+          SongPlayer.preVolume = SongPlayer.volume;
+          SongPlayer.muted = true;
+          SongPlayer. setVolume(0);
+      }
+    }
+
     return SongPlayer;
   };
+
+
 
   angular
   .module('blocJams')
